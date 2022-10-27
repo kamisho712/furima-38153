@@ -10,6 +10,6 @@ FactoryBot.define do
     address            { Faker::Address.building_number }
     building_name      { "" }
     phone_number       { Faker::Number.leading_zero_number(digits: 11) }
-    purchase_record_id { Faker::Number.between(from: 1, to: 1000) }
+    token              {"tok_abcdefghijk00000000000000000"}
   end
 end

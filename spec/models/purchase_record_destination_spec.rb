@@ -7,7 +7,7 @@ RSpec.describe PurchaseRecordDestination, type: :model do
 
   describe '商品の購入' do
     context '商品を購入できる時' do
-      it 'user_id、item_id、post_code、prefecture_id、city、adress、phone_number、purchase_record_idが存在すれば登録できる' do
+      it 'user_id、item_id、post_code、prefecture_id、city、adress、phone_number、tokenが存在すれば登録できる' do
         expect(@purchase_record_destination).to be_valid
       end
     end
@@ -72,6 +72,11 @@ RSpec.describe PurchaseRecordDestination, type: :model do
         @purchase_record_destination.phone_number = '090123456789'
         @purchase_record_destination.valid?
         expect(@purchase_record_destination.errors.full_messages).to include("Phone number must be at least 10 and no more than 11 single-byte digits")
+      end
+      it "tokenが空では登録できない" do
+        @purchase_record_destination.token = nil
+        @purchase_record_destination.valid?
+        expect(@purchase_record_destination.errors.full_messages).to include("Token can't be blank")
       end
     end
 
