@@ -31,12 +31,12 @@ RSpec.describe PurchaseRecordDestination, type: :model do
       it 'post_codeが半角文字列以外では登録できない' do
         @purchase_record_destination.post_code = '７９１ー０２４５'
         @purchase_record_destination.valid?
-        expect(@purchase_record_destination.errors.full_messages).to include("Post code must be single-byte numbers, including hyphens")
+        expect(@purchase_record_destination.errors.full_messages).to include('Post code must be single-byte numbers, including hyphens')
       end
       it 'post_codeが「7桁ハイフンなし」の半角文字列では登録できない' do
         @purchase_record_destination.post_code = '7910245'
         @purchase_record_destination.valid?
-        expect(@purchase_record_destination.errors.full_messages).to include("Post code must be single-byte numbers, including hyphens")
+        expect(@purchase_record_destination.errors.full_messages).to include('Post code must be single-byte numbers, including hyphens')
       end
       it 'prefecture_idが空では登録できない' do
         @purchase_record_destination.prefecture_id = '1'
@@ -61,24 +61,23 @@ RSpec.describe PurchaseRecordDestination, type: :model do
       it 'phone_numberは半角数値以外では登録できない' do
         @purchase_record_destination.phone_number = '０９０１２３４５６７８'
         @purchase_record_destination.valid?
-        expect(@purchase_record_destination.errors.full_messages).to include("Phone number must be at least 10 and no more than 11 single-byte digits")
+        expect(@purchase_record_destination.errors.full_messages).to include('Phone number must be at least 10 and no more than 11 single-byte digits')
       end
       it 'phone_numberは9桁以下では登録できない' do
         @purchase_record_destination.phone_number = '090123456'
         @purchase_record_destination.valid?
-        expect(@purchase_record_destination.errors.full_messages).to include("Phone number must be at least 10 and no more than 11 single-byte digits")
+        expect(@purchase_record_destination.errors.full_messages).to include('Phone number must be at least 10 and no more than 11 single-byte digits')
       end
       it 'phone_numberは12桁以上では登録できない' do
         @purchase_record_destination.phone_number = '090123456789'
         @purchase_record_destination.valid?
-        expect(@purchase_record_destination.errors.full_messages).to include("Phone number must be at least 10 and no more than 11 single-byte digits")
+        expect(@purchase_record_destination.errors.full_messages).to include('Phone number must be at least 10 and no more than 11 single-byte digits')
       end
-      it "tokenが空では登録できない" do
+      it 'tokenが空では登録できない' do
         @purchase_record_destination.token = nil
         @purchase_record_destination.valid?
         expect(@purchase_record_destination.errors.full_messages).to include("Token can't be blank")
       end
     end
-
   end
 end

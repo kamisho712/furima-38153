@@ -8,8 +8,8 @@ FactoryBot.define do
     prefecture_id      { Faker::Number.between(from: 2, to: 48) }
     city               { Faker::Address.city }
     address            { Faker::Address.building_number }
-    building_name      { "" }
+    building_name      { '' }
     phone_number       { Faker::Number.leading_zero_number(digits: 11) }
-    token              {"tok_abcdefghijk00000000000000000"}
+    token              { 'tok_abcdefghijk00000000000000000' }
   end
 end
