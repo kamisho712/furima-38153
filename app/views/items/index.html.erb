@@ -133,11 +133,11 @@
             <%= link_to item_path(item.id) do %>
               <div class='item-img-content'>
                 <%= image_tag item.image, class: "item-img" %>
-                <%# 学習メモ：商品購入機能実装時に売却済商品への「sold out」表示機能を実装する %>
-                  <%#< div class='sold-out'>%>
-                    <%#<span>Sold Out!!</span>%>
-                  <%#</div>%>
-                <%# /学習メモ：商品購入機能実装時に売却済商品への「sold out」表示機能を実装する %>
+                <% if item.purchase_record.present?  %>
+                  <div class='sold-out'>
+                    <span>Sold Out!!</span>
+                  </div>
+                <% end %>
               </div>
               <div class='item-info'>
                 <h3 class='item-name'>
