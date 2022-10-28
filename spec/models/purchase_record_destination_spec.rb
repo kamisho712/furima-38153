@@ -1,18 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe PurchaseRecordDestination, type: :model do
-  before do
-    @purchase_record_destination = FactoryBot.build(:purchase_record_destination)
-  end
-
   describe '商品の購入' do
+    before do
+      user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item)
+      @purchase_record_destination = FactoryBot.build(:purchase_record_destination, user_id: user.id, item_id: item.id)
+    end
+
     context '商品を購入できる時' do
-      it 'user_id、item_id、post_code、prefecture_id、city、adress、phone_number、tokenが存在すれば登録できる' do
+      it 'user_id、item_id、post_code、prefecture_id、city、adress、building_name、phone_number、tokenが存在すれば登録できる' do
+        expect(@purchase_record_destination).to be_valid
+      end
+      it 'building_nameは空でも保存できること' do
+        @purchase_record_destination.building_name = ''
         expect(@purchase_record_destination).to be_valid
       end
     end
-
-    context '配送を購入できない時' do
+    
+    context '商品を購入できない時' do
       it 'user_idが紐づいていないと保存できない' do
         @purchase_record_destination.user_id = nil
         @purchase_record_destination.valid?
